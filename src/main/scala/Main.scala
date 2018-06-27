@@ -1,7 +1,7 @@
 import vegas._
-import vegas.data.External.{Barley, Cars, Movies, Population, Stocks, Unemployment}
+import vegas.data.External._
 
-import scala.util.Random
+import scala.io.StdIn
 
 object Main extends App {
 
@@ -155,6 +155,10 @@ object Main extends App {
       .encodeText(field = "OriginInitial", dataType = Nominal)
   )
 
-  val randomExampleIndex = Random.nextInt(examples.length)
-  examples(randomExampleIndex).show
+  val userChoice = StdIn.readLine(s"Insert a number from 1 to ${examples.length}> ")
+  val index = userChoice.toInt
+
+  require(1 <= index && index <= examples.length, s"$index is out of range.")
+
+  examples(index - 1).show
 }
